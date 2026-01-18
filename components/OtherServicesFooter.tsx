@@ -6,25 +6,30 @@ import Link from 'next/link';
 interface ServiceCard {
   title: string;
   image: string;
+  href: string;
 }
 
 const OtherServicesFooter: React.FC = () => {
   const services: ServiceCard[] = [
     {
       title: 'Paystub',
-      image: '/services/paystub.jpg' // Replace with your image
+      image: '/services/paystubb.jpg', // Replace with your image,
+      href: '/services/paystubb.jpg'
     },
     {
       title: 'Credit Report',
-      image: '/services/credit-report.jpg' // Replace with your image
+      image: '/services/credit-reportt.jpg', // Replace with your image
+      href: '/services/credit-reportt.jpg'
     },
     {
       title: 'W2 Form',
-      image: '/services/w2-form.jpg' // Replace with your image
+      image: '/services/w2-formm.jpg', // Replace with your image
+      href: '/services/w2-formm.jpg'
     },
     {
       title: '1099 Form',
-      image: '/services/1099-form.jpg' // Replace with your image
+      image: '/services/1099-formm.jpg', // Replace with your image
+      href: '/services/1099-formm.jpg'
     }
   ];
 
@@ -40,8 +45,8 @@ const OtherServicesFooter: React.FC = () => {
           {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div
-                key={index}
+              <a href={service.href} target='_blank' key={index}>
+                <div
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
               >
                 <div className="relative aspect-4/3 bg-gray-100">
@@ -58,6 +63,7 @@ const OtherServicesFooter: React.FC = () => {
                   </h3>
                 </div>
               </div>
+              </a>
             ))}
           </div>
         </div>
@@ -69,9 +75,9 @@ const OtherServicesFooter: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Column 1 - Brand */}
             <div>
-              <h3 className="text-xl font-bold mb-4">PAPER WORK MASTER</h3>
+              <h3 className="text-xl font-bold mb-4">WorkForm Solutions</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Paper Work Master helps you create professional, well-structured documents safely and efficiently — ensuring your information stays private and secure.
+              WorkForm Solutions helps you create professional, well-structured documents safely and efficiently — ensuring your information stays private and secure.
               </p>
               
               {/* Social Icons */}

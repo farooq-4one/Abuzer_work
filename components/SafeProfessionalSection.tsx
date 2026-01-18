@@ -11,7 +11,7 @@ const SafeProfessionalSection: React.FC = () => {
           <div className="relative">
             <div className="relative rounded-lg overflow-hidden shadow-2xl">
               <Image
-                src="/images/team-collaboration.jpg" // Replace with your image path
+                src="/images/teams.jpg" // Replace with your image path
                 alt="Team collaboration"
                 width={600}
                 height={600}
@@ -51,7 +51,7 @@ const SafeProfessionalSection: React.FC = () => {
             </h2>
 
             <p className="text-gray-700 mb-6 leading-relaxed">
-              <span className="font-bold">Paper Work Master</span> makes designing professional sample statements simple and secure. You have full control to easily create documents that are neatly formatted and visually polished.
+              <span className="font-bold">WorkForm Solutions</span> makes designing professional sample statements simple and secure. You have full control to easily create documents that are neatly formatted and visually polished.
             </p>
 
             <p className="text-gray-700 mb-8 leading-relaxed">

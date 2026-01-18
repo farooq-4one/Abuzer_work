@@ -12,7 +12,7 @@ const RatingCard: React.FC<RatingCardProps> = ({
   platform,
   rating,
   reviewCount,
-  logoText = 'PAPER WORK MASTER',
+  logoText = 'WorkForm Solutions',
 }) => {
   // Generate stars based on rating
   const renderStars = () => {

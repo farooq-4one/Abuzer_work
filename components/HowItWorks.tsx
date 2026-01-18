@@ -46,30 +46,30 @@ const HowItWorksWithSVG: React.FC = () => {
     {
       icon: <ProvideInfoIcon />,
       title: 'PROVIDE YOUR INFORMATION',
-      description: 'Your data is fully secure and private. We never request access to real bank accounts, and protecting your privacy is our highest priority.'
+      description: 'Your data is secure and handled with strict confidentiality. We do not request access to real bank accounts, and safeguarding your privacy is our top priority.'
     },
     {
       icon: <SelectTemplateIcon />,
       title: 'SELECT A TEMPLATE',
-      description: 'Pick a template that suits your requirements. Our layouts are professional, keeping your statement clear, organized, and easy to read.'
+      description: 'Select a template that best fits your requirements. Our professionally designed layouts ensure your statement is clear, well-organized, and easy to read.'
     },
     {
       icon: <CheckReceiveIcon />,
       title: 'CHECK AND RECEIVE',
-      description: 'Review your statement information carefully. Once confirmed, we\'ll securely prepare and deliver your final document promptly.'
+      description: 'Please review your statement information carefully. Once confirmed, we will securely prepare and promptly deliver your final document.'
     }
   ];
 
   return (
-    <section className="bg-gray-200 py-16 mt-16">
+    <section className="bg-gray-200 py-6 mt-8">
       <div className="max-w-7xl text-center mb-12 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4 tracking-wide">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4 tracking-wide">
             CUSTOM BANK STATEMENT
           </h2>
-          <p className="text-gray-700 mx-auto leading-relaxed max-w-4xl">
-            Paperwork Master is an Online Bank statement Generator tool which you used to create bank statements both personal statements or business statements. Also if you need any tax returns, credit reports, paystubs etc then use contact us page. These are not the fake bank statements this is mainly used for your personal record keeping, educational purposes or for school projects etc.
+          <p className="text-gray-700 mx-auto text-lg leading-relaxed max-w-4xl">
+          Paperwork Tax Master is an online bank statement generator designed for creating personal and business statements. The platform may also be used to request services such as tax returns, credit reports, and pay stubs through the Contact Us page. All generated documents are intended strictly for personal record keeping, educational use, or academic projects and are not created for fraudulent or deceptive purposes.
           </p>
         </div>
 
@@ -93,12 +93,12 @@ const HowItWorksWithSVG: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-gray-900 mb-3 tracking-wide">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-wide">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-700 leading-relaxed text-sm">
+              <p className="text-gray-700 leading-relaxed text-lg">
                 {step.description}
               </p>
             </div>

@@ -1,6 +1,7 @@
 // components/HeroSection.tsx
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroSection: React.FC = () => {
   return (
@@ -27,7 +28,7 @@ const HeroSection: React.FC = () => {
           <span className="text-white">GENERATOR</span>
         </h1>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto font-medium leading-relaxed">
+        <p className="text-lg sm:text-xl md:text-2xl text-white mb-12 max-w-5xl mx-auto font-medium leading-relaxed">
           EDIT PERSONAL OR BUSINESS BANK STATEMENTS WITH US FOR BUDGETING,
           <br className="hidden sm:block" />
           RECORD-KEEPING, OR PRESENTATION PURPOSES — SIMPLE AND EASY TO USE.
@@ -35,22 +36,25 @@ const HeroSection: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link href='https://master-paper-work.vercel.app/generate'>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto">
             Generate Now
           </button>
+          </Link>
           <a 
             href="/templates/bank-statement-template.pdf" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white hover:bg-gray-100 text-gray-900 px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto inline-block text-center"
           >
-            View Templates
+            View Templates  
           </a>
         </div>
       </div>
 
       {/* WhatsApp Help Button */}
       <div className="fixed bottom-8 right-8 z-50">
+        <Link href='https://api.whatsapp.com/send?phone=923244628026&text=Hello!' target='_blank'>
         <button className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-110 flex items-center gap-2">
           <svg
             className="w-6 h-6"
@@ -61,6 +65,7 @@ const HeroSection: React.FC = () => {
           </svg>
           <span className="font-medium hidden sm:inline">Need Help?</span>
         </button>
+        </Link>
       </div>
     </section>
   );

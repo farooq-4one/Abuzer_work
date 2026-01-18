@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface FAQItem {
@@ -12,20 +13,20 @@ const CTAandFAQ: React.FC = () => {
   const faqs: FAQItem[] = [
     {
       question: 'Is My Data Secure?',
-      answer: 'Definitely. At Paper Work Master, privacy and data security are our top priorities. We never request access to actual bank accounts or login credentials, and none of your personal data is stored or shared. All information you provide remains under your control and is handled securely throughout the process.'
+      answer: 'At Paperwork Master, privacy and data security are our highest priorities. We never request access to actual bank accounts or login credentials, and we do not store or share your personal information. All data you provide remains under your control and is handled securely throughout the entire process.'
     },
     {
       question: 'How Realistic Are the Sample Statements?',
-      answer: 'Our sample statements are designed to look professional and realistic. They follow standard banking formats and include all typical elements you would find in a real bank statement, making them perfect for educational purposes and record-keeping.'
+      answer: 'Our sample statements are carefully crafted and professionally formatted to ensure clarity and organization. Each template follows a realistic layout, maintaining consistency and readability, and provides a polished, professional appearance suitable for personal records or educational purposes.'
     },
     {
       question: 'Are the Sample Statements Useful for Learning?',
-      answer: 'Yes! Our sample statements are excellent learning tools. They help you understand financial documents, practice budgeting, prepare for loan applications, and teach financial literacy. They\'re widely used by students, educators, and individuals improving their financial knowledge.'
+      answer: 'Our sample statements are expertly designed for educational and training purposes, providing a clear and realistic view of financial documents. They are ideal for teaching financial literacy, illustrating banking formats, and helping students understand account layouts. With a safe, structured approach, these templates make it easy to learn about budgeting, transaction summaries, and record organization, all while presenting a polished, professional appearance.'
     },
     {
       question: 'What If I Need Extra Assistance?',
-      answer: 'We\'re here to help! Our customer support team is available to assist you with any questions or concerns. You can reach out through our contact page, email, or WhatsApp support. We typically respond within 24 hours to ensure you get the help you need.'
-    }
+      answer: 'If you have any questions or need assistance, our friendly support team is always ready to help. You can contact us by email at info@paperworkmaster.net or by phone at +1 786-954-7429. We are committed to making your experience with WorkForm Solutions safe, smooth, and hassle-free.'
+    }    
   ];
 
   const toggleFAQ = (index: number) => {
@@ -43,9 +44,11 @@ const CTAandFAQ: React.FC = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
             GET THE FORM IN JUST A FEW MINUTES
           </h2>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-xl">
+          <Link href='https://master-paper-work.vercel.app/generate'>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto">
             Generate Now
           </button>
+          </Link>
         </div>
 
         {/* FAQ Section */}
