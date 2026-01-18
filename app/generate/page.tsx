@@ -247,12 +247,27 @@ const MultiStepForm = () => {
                 placeholder="Account Number (Optional)"
                 className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
 
-              <select name="howMany" value={formData.howMany} onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full">
-                <option value="">1 Month (Personal) $75</option>
-                <option value="1-month">1 Month (Personal) $75</option>
-                <option value="2-month">2 Month (Personal) $174.99</option>
-                <option value="3-month">3 Month (Personal) $264.99</option>
+              <select
+                name="howMany"
+                value={formData.howMany}
+                onChange={handleInputChange}
+                className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+              >
+                <option value="" disabled>
+                  Select an option
+                </option>
+
+                {/* Personal */}
+                <option value="1-month-personal">1 Month (Personal) $89.99</option>
+                <option value="2-month-personal">2 Month (Personal) $174.99</option>
+                <option value="3-month-personal">3 Month (Personal) $264.99</option>
+                <option value="6-month-personal">6 Month (Personal) $549.99</option>
+
+                {/* Business */}
+                <option value="1-month-business">1 Month (Business) $100</option>
+                <option value="2-month-business">2 Month (Business) $214.99</option>
+                <option value="3-month-business">3 Month (Business) $324.99</option>
+                <option value="6-month-business">6 Month (Business) $654.99</option>
               </select>
 
               <select name="paymentOption" value={formData.paymentOption} onChange={handleInputChange}

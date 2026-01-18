@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href='https://master-paper-work.vercel.app/generate'>
+          <Link href='http://localhost:3000/generate'>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto">
             Generate Now
           </button>
