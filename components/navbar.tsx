@@ -1,48 +1,36 @@
-// components/Navbar.tsx
 'use client'
-import React, {useState} from 'react';
 
-interface ServiceCard2 {
-  title: string;
-  href: string;
+import React, { useState } from 'react'
+
+interface ServiceCard {
+  title: string
+  href: string
 }
 
-  const services: ServiceCard2[] = [
-    {
-      title: 'Paystub',
-      href: '/services/paystubb.jpg'
-    },
-    {
-      title: 'Credit Report',
-      href: '/services/credit-reportt.jpg'
-    },
-    {
-      title: 'Tax Return',
-      href: '/services/w2-formm.jpg'
-    },
-    {
-      title: 'Bank Statement',
-      href: '/services/1099-formm.jpg'
-    }
-  ];
-
+const services: ServiceCard[] = [
+  { title: 'Paystub', href: '/services/paystubb.jpg' },
+  { title: 'Credit Report', href: '/services/credit-reportt.jpg' },
+  { title: 'Tax Return', href: '/services/w2-formm.jpg' },
+  { title: 'Bank Statement', href: '/services/1099-formm.jpg' },
+]
 
 const Navbar: React.FC = () => {
-
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
 
   return (
-    <nav className="bg-gray-50 shadow-sm">
+    <nav className="bg-gray-50 shadow-sm relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
+          
           {/* Logo */}
           <div className="shrink-0">
             <h1 className="text-2xl font-bold text-blue-900">
-            WorkForm Solutions
+              WorkForm Solutions
             </h1>
           </div>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
               href="/"
@@ -50,11 +38,16 @@ const Navbar: React.FC = () => {
             >
               Home
             </a>
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-gray-900 font-medium flex items-center" onClick={() => setOpen(!open)}>
+
+            {/* Desktop Services Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setServicesOpen(!servicesOpen)}
+                className="text-gray-700 hover:text-gray-900 font-medium flex items-center"
+              >
                 Services
                 <svg
-                  className="w-8 h-4 ml-1"
+                  className="w-4 h-4 ml-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -62,28 +55,31 @@ const Navbar: React.FC = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={4}
+                    strokeWidth={2}
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
               </button>
-              {open && (
-        <div className="absolute mt-2 w-48 bg-white rounded-lg shadow-lg border z-50">
-          <ul className="py-2">
-            {services.map((item, i) => (
-              <li key={i}>
-                <a
-                  href={item.href} target='_blank'
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+
+              {servicesOpen && (
+                <div className="absolute mt-2 w-48 bg-white rounded-lg shadow-lg border z-50">
+                  <ul className="py-2">
+                    {services.map((item, i) => (
+                      <li key={i}>
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >
+                          {item.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
+
             <a
               href="#contact"
               className="text-gray-700 hover:text-gray-900 font-medium"
@@ -92,35 +88,89 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Order Now Button */}
+          {/* Desktop Order Button */}
           <div className="hidden md:block">
-            <a href="https://api.whatsapp.com/send?phone=923244628026&text=Hello!" target="_blank">
-            <button className="bg-blue-900 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-800 transition-colors">
-              Order Now
-            </button>
+            <a
+              href="https://api.whatsapp.com/send?phone=923244628026&text=Hello!"
+              target="_blank"
+            >
+              <button className="bg-blue-900 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-800 transition-colors">
+                Order Now
+              </button>
             </a>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Hamburger Button */}
           <div className="md:hidden">
-            <button className="text-gray-700 hover:text-gray-900">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="text-gray-700 hover:text-gray-900"
+            >
               <svg
                 className="h-6 w-6"
                 fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke="currentColor"
                 strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
               >
-                <path d="M4 6h16M4 12h16M4 18h16"></path>
+                <path d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
         </div>
       </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t z-50">
+          <div className="px-4 py-4 space-y-3">
+            <a
+              href="/"
+              className="block text-gray-900 font-medium"
+              onClick={() => setMobileOpen(false)}
+            >
+              Home
+            </a>
+
+            <div>
+              <div className="text-gray-700 font-medium mb-1">Services</div>
+              <div className="ml-4 space-y-2">
+                {services.map((item, i) => (
+                  <a
+                    key={i}
+                    href={item.href}
+                    target="_blank"
+                    className="block text-gray-600"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              className="block text-gray-700"
+              onClick={() => setMobileOpen(false)}
+            >
+              Contact
+            </a>
+
+            <a
+              href="https://api.whatsapp.com/send?phone=923244628026&text=Hello!"
+              target="_blank"
+              onClick={() => setMobileOpen(false)}
+            >
+              <button className="bg-blue-900 text-white px-6 py-2 rounded-full font-medium w-full mt-2">
+                Order Now
+              </button>
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+export default Navbar

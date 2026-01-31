@@ -114,7 +114,7 @@ const MultiStepForm = () => {
         )}
 
         {/* Progress */}
-        <div className="flex items-center justify-between mb-2 max-w-2xl mx-auto">
+        <div className="flex items-center justify-between mb-4 max-w-2xl mx-auto">
           {[1,2,3].map(step => (
             <React.Fragment key={step}>
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold
@@ -129,33 +129,90 @@ const MultiStepForm = () => {
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-10">
+        <div className=" bg-white rounded-xl shadow-lg p-6 md:p-10">
           
           {/* STEP 1 */}
           {currentStep === 1 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {[
-                ['name','Name','text'],
-                ['phone','Phone','tel'],
-                ['email','Email','email'],
-                ['address','Address','text'],
-                ['city','City','text'],
-                ['zip','Zip','text']
-              ].map(([name,label,type]) => (
-                <div key={name}>
-                  <label className="block mb-2 font-medium text-gray-900">
-                    {label} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type={type}
-                    name={name}
-                    value={(formData as any)[name]}
-                    onChange={handleInputChange}
-                    className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                  />
-                </div>
-              ))}
-
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  Phone <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  City <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-2 font-medium text-gray-900">
+                  Zip <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                />
+              </div>
+          
               <div>
                 <label className="block mb-2 font-medium">Country *</label>
                 <select
@@ -164,15 +221,15 @@ const MultiStepForm = () => {
                   onChange={handleInputChange}
                   className="w-full px-5 py-3 bg-gray-100 border border-gray-300 rounded-full"
                 >
-                  <option value=""></option>
+                  <option value="">Select Country</option>
                   <option value="USA">USA</option>
                   <option value="UK">UK</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
-
+          
               <div>
-                <label className="block mb-2 font-medium">States - Province *</label>
+                <label className="block mb-2 font-medium">State / Province *</label>
                 <select
                   name="state"
                   value={formData.state}
@@ -180,10 +237,12 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border border-gray-300 rounded-full"
                 >
                   <option value="">Select State</option>
-                  {usaStates.map(s => <option key={s}>{s}</option>)}
+                  {usaStates.map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
                 </select>
               </div>
-
+          
               <div className="md:col-span-2 mt-6">
                 <button
                   onClick={handleNext}
@@ -199,42 +258,107 @@ const MultiStepForm = () => {
           {/* STEP 2 */}
           {currentStep === 2 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <select name="bank" value={formData.bank} onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full">
-                <option value="">Select Bank</option>
-                {majorBanks.map(b => <option key={b}>{b}</option>)}
-              </select>
-
-              <input name="companyName" value={formData.companyName} onChange={handleInputChange}
-                placeholder="Company Name"
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
-
-              <select name="payrollOption" value={formData.payrollOption} onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full">
-                <option value="">Select</option>
-                <option value="weekly">Weekly</option>
-                <option value="bi-weekly">Bi-Weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-
-              <input type="date" name="depositDate" value={formData.depositDate}
-                onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
-
-              <input name="depositAmount" value={formData.depositAmount}
-                onChange={handleInputChange}
-                placeholder="$00.00"
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
-
-              <input name="endingBalance" value={formData.endingBalance}
-                onChange={handleInputChange}
-                placeholder="$00.00"
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
-
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Bank Name
+                </label>
+                <select
+                  name="bank"
+                  value={formData.bank}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                >
+                  <option value="">Select Bank</option>
+                  {majorBanks.map(b => (
+                    <option key={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Company Name
+                </label>
+                <input
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  placeholder="Enter company name"
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Payroll Frequency
+                </label>
+                <select
+                  name="payrollOption"
+                  value={formData.payrollOption}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                >
+                  <option value="">Select</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="bi-weekly">Bi-Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Deposit Date
+                </label>
+                <input
+                  type="date"
+                  name="depositDate"
+                  value={formData.depositDate}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Deposit Amount
+                </label>
+                <input
+                  name="depositAmount"
+                  value={formData.depositAmount}
+                  onChange={handleInputChange}
+                  placeholder="$00.00"
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Ending Balance
+                </label>
+                <input
+                  name="endingBalance"
+                  value={formData.endingBalance}
+                  onChange={handleInputChange}
+                  placeholder="$00.00"
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                />
+              </div>
+          
               <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                <button onClick={handlePrevious} className="py-4 bg-blue-900 text-white rounded-full">Previous</button>
-                <button onClick={handleNext} disabled={!isStep2Valid()}
-                  className="py-4 bg-blue-900 text-white rounded-full disabled:bg-gray-400">Next</button>
+                <button
+                  onClick={handlePrevious}
+                  className="py-4 bg-blue-900 text-white rounded-full"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={handleNext}
+                  disabled={!isStep2Valid()}
+                  className="py-4 bg-blue-900 text-white rounded-full disabled:bg-gray-400"
+                >
+                  Next
+                </button>
               </div>
             </div>
           )}
@@ -242,44 +366,72 @@ const MultiStepForm = () => {
           {/* STEP 3 */}
           {currentStep === 3 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <input name="accountNumber" value={formData.accountNumber}
-                onChange={handleInputChange}
-                placeholder="Account Number (Optional)"
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full" />
-
-              <select
-                name="howMany"
-                value={formData.howMany}
-                onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full"
-              >
-                <option value="" disabled>
-                  Select an option
-                </option>
-
-                {/* Personal */}
-                <option value="1-month-personal">1 Month (Personal) $89.99</option>
-                <option value="2-month-personal">2 Month (Personal) $174.99</option>
-                <option value="3-month-personal">3 Month (Personal) $264.99</option>
-                <option value="6-month-personal">6 Month (Personal) $549.99</option>
-
-                {/* Business */}
-                <option value="1-month-business">1 Month (Business) $100</option>
-                <option value="2-month-business">2 Month (Business) $214.99</option>
-                <option value="3-month-business">3 Month (Business) $324.99</option>
-                <option value="6-month-business">6 Month (Business) $654.99</option>
-              </select>
-
-              <select name="paymentOption" value={formData.paymentOption} onChange={handleInputChange}
-                className="w-full px-5 py-3 bg-gray-100 border rounded-full">
-                <option value="">Venmo</option>
-                <option value="bitcoin">Bitcoin</option>
-                <option value="zelle">Zelle</option>
-                <option value="venmo">Venmo</option>
-              </select>
-
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Account Number (Optional)
+                </label>
+                <input
+                  name="accountNumber"
+                  value={formData.accountNumber}
+                  onChange={handleInputChange}
+                  placeholder="Enter account number"
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                />
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Statement Duration & Type
+                </label>
+                <select
+                  name="howMany"
+                  value={formData.howMany}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                >
+                  <option value="" disabled>
+                    Select an option
+                  </option>
+          
+                  {/* Personal */}
+                  <option value="1-month-personal">1 Month (Personal) $89.99</option>
+                  <option value="2-month-personal">2 Month (Personal) $174.99</option>
+                  <option value="3-month-personal">3 Month (Personal) $264.99</option>
+                  <option value="6-month-personal">6 Month (Personal) $549.99</option>
+          
+                  {/* Business */}
+                  <option value="1-month-business">1 Month (Business) $100</option>
+                  <option value="2-month-business">2 Month (Business) $214.99</option>
+                  <option value="3-month-business">3 Month (Business) $324.99</option>
+                  <option value="6-month-business">6 Month (Business) $654.99</option>
+                </select>
+              </div>
+          
+              <div>
+                <label className="block mb-1 text-sm font-medium text-gray-700">
+                  Payment Method
+                </label>
+                <select
+                  name="paymentOption"
+                  value={formData.paymentOption}
+                  onChange={handleInputChange}
+                  className="w-full px-5 py-3 bg-gray-100 border rounded-full"
+                >
+                  <option value="">Select Payment Method</option>
+                  <option value="venmo">Venmo</option>
+                  <option value="bitcoin">Bitcoin</option>
+                  <option value="zelle">Zelle</option>
+                </select>
+              </div>
+          
               <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                <button onClick={handlePrevious} className="py-4 bg-blue-900 text-white rounded-full">Previous</button>
+                <button
+                  onClick={handlePrevious}
+                  className="py-4 bg-blue-900 text-white rounded-full"
+                >
+                  Previous
+                </button>
                 <button
                   onClick={handleSubmit}
                   disabled={!isStep3Valid() || isSubmitting}
