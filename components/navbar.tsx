@@ -1,28 +1,27 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 interface ServiceCard {
-  title: string
-  href: string
+  title: string;
+  href: string;
 }
 
 const services: ServiceCard[] = [
-  { title: 'Paystub', href: '/services/paystubb.jpg' },
-  { title: 'Credit Report', href: '/services/credit-reportt.jpg' },
-  { title: 'Tax Return', href: '/services/w2-formm.jpg' },
-  { title: 'Bank Statement', href: '/services/1099-formm.jpg' },
-]
+  { title: "Paystub", href: "/services/paystubb.jpg" },
+  { title: "Credit Report", href: "/services/credit-reportt.jpg" },
+  { title: "Tax Return", href: "/services/w2-formm.jpg" },
+  { title: "Bank Statement", href: "/services/1099-formm.jpg" },
+];
 
 const Navbar: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
     <nav className="bg-gray-50 shadow-sm relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          
           {/* Logo */}
           <div className="shrink-0">
             <h1 className="text-2xl font-bold text-blue-900">
@@ -91,7 +90,7 @@ const Navbar: React.FC = () => {
           {/* Desktop Order Button */}
           <div className="hidden md:block">
             <a
-              href="https://api.whatsapp.com/send?phone=923244628026&text=Hello!"
+              href="https://api.whatsapp.com/send?phone=19176198387&text=Hello!"
               target="_blank"
             >
               <button className="bg-blue-900 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-800 transition-colors">
@@ -158,7 +157,7 @@ const Navbar: React.FC = () => {
             </a>
 
             <a
-              href="https://api.whatsapp.com/send?phone=923244628026&text=Hello!"
+              href="https://api.whatsapp.com/send?phone=19176198387&text=Hello!"
               target="_blank"
               onClick={() => setMobileOpen(false)}
             >
@@ -170,7 +169,7 @@ const Navbar: React.FC = () => {
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

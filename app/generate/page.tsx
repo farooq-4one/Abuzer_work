@@ -144,7 +144,7 @@ const MultiStepForm = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500"
                 />
               </div>
           
@@ -157,7 +157,7 @@ const MultiStepForm = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
           
@@ -170,7 +170,7 @@ const MultiStepForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
           
@@ -183,7 +183,7 @@ const MultiStepForm = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
           
@@ -196,7 +196,7 @@ const MultiStepForm = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
           
@@ -209,7 +209,7 @@ const MultiStepForm = () => {
                   name="zip"
                   value={formData.zip}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-md"
+                  className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
           
