@@ -1,24 +1,24 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const initialFormData = {
-  name: '',
-  phone: '',
-  email: '',
-  country: '',
-  address: '',
-  city: '',
-  state: '',
-  zip: '',
-  bank: '',
-  companyName: '',
-  payrollOption: '',
-  depositDate: '',
-  depositAmount: '',
-  endingBalance: '',
-  accountNumber: '',
-  howMany: '',
-  paymentOption: ''
+  name: "",
+  phone: "",
+  email: "",
+  country: "",
+  address: "",
+  city: "",
+  state: "",
+  zip: "",
+  bank: "",
+  companyName: "",
+  payrollOption: "",
+  depositDate: "",
+  depositAmount: "",
+  endingBalance: "",
+  accountNumber: "",
+  howMany: "",
+  paymentOption: "",
 };
 
 const MultiStepForm = () => {
@@ -28,25 +28,85 @@ const MultiStepForm = () => {
   const [error, setError] = useState<string | null>(null);
 
   const usaStates = [
-    'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
-    'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
-    'Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan',
-    'Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada',
-    'New Hampshire','New Jersey','New Mexico','New York','North Carolina',
-    'North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
-    'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
-    'Virginia','Washington','West Virginia','Wisconsin','Wyoming'
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
   ];
 
   const majorBanks = [
-    'Chase Bank','Bank of America','Wells Fargo','Citibank','U.S. Bank',
-    'PNC Bank','Capital One','TD Bank','Fifth Third Bank','Truist Bank',
-    'Regions Bank','M&T Bank'
+    "Chase Bank",
+    "Bank of America",
+    "Wells Fargo",
+    "Citibank",
+    "U.S. Bank",
+    "PNC Bank",
+    "Capital One",
+    "TD Bank",
+    "Fifth Third Bank",
+    "Truist Bank",
+    "Regions Bank",
+    "M&T Bank",
+    "Chime",
+    "Navy Federal",
+    "California Trust",
+    "Federal Credit Union",
+    "Novo Bank",
+    "Texas Bank",
+    "Woodforest",
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleNext = () => {
@@ -64,47 +124,54 @@ const MultiStepForm = () => {
       setIsSubmitting(true);
       setError(null);
 
-      const res = await fetch('/api/submit-form', {
-        method: 'POST',
+      const res = await fetch("/api/submit-form", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        throw new Error(data?.error || 'Failed to submit form');
+        throw new Error(data?.error || "Failed to submit form");
       }
 
-      alert('Form submitted successfully!');
+      alert("Form submitted successfully!");
       setFormData(initialFormData);
       setCurrentStep(1);
     } catch (err: any) {
-      console.error('Error submitting form:', err);
-      setError(err?.message || 'Something went wrong. Please try again.');
-      alert('Something went wrong. Please try again.');
+      console.error("Error submitting form:", err);
+      setError(err?.message || "Something went wrong. Please try again.");
+      alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const isStep1Valid = () =>
-    formData.name && formData.phone && formData.email &&
-    formData.country && formData.address && formData.city &&
-    formData.state && formData.zip;
+    formData.name &&
+    formData.phone &&
+    formData.email &&
+    formData.country &&
+    formData.address &&
+    formData.city &&
+    formData.state &&
+    formData.zip;
 
   const isStep2Valid = () =>
-    formData.bank && formData.companyName && formData.payrollOption &&
-    formData.depositDate && formData.depositAmount && formData.endingBalance;
+    formData.bank &&
+    formData.companyName &&
+    formData.payrollOption &&
+    formData.depositDate &&
+    formData.depositAmount &&
+    formData.endingBalance;
 
-  const isStep3Valid = () =>
-    formData.howMany && formData.paymentOption;
+  const isStep3Valid = () => formData.howMany && formData.paymentOption;
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-gray-200 px-4">
       <div className="w-full max-w-4xl">
-        
         {currentStep === 1 && (
           <div className="text-center mb-2">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -115,14 +182,18 @@ const MultiStepForm = () => {
 
         {/* Progress */}
         <div className="flex items-center justify-between mb-4 max-w-2xl mx-auto">
-          {[1,2,3].map(step => (
+          {[1, 2, 3].map((step) => (
             <React.Fragment key={step}>
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold
-                ${currentStep >= step ? 'bg-blue-900 text-white' : 'border-2 border-gray-300 text-gray-600'}`}>
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold
+                ${currentStep >= step ? "bg-blue-900 text-white" : "border-2 border-gray-300 text-gray-600"}`}
+              >
                 {step}
               </div>
               {step !== 3 && (
-                <div className={`flex-1 h-0.5 mx-2 ${currentStep > step ? 'bg-blue-900' : 'bg-gray-300'}`} />
+                <div
+                  className={`flex-1 h-0.5 mx-2 ${currentStep > step ? "bg-blue-900" : "bg-gray-300"}`}
+                />
               )}
             </React.Fragment>
           ))}
@@ -130,11 +201,9 @@ const MultiStepForm = () => {
 
         {/* Form */}
         <div className=" bg-white rounded-xl shadow-lg p-6 md:p-10">
-          
           {/* STEP 1 */}
           {currentStep === 1 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   Name <span className="text-red-500">*</span>
@@ -147,7 +216,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   Phone <span className="text-red-500">*</span>
@@ -160,7 +229,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   Email <span className="text-red-500">*</span>
@@ -173,7 +242,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   Address <span className="text-red-500">*</span>
@@ -186,7 +255,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   City <span className="text-red-500">*</span>
@@ -199,7 +268,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium text-gray-900">
                   Zip <span className="text-red-500">*</span>
@@ -212,7 +281,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-2 bg-gray-100 border border-gray-300 rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-2 font-medium">Country *</label>
                 <select
@@ -227,9 +296,11 @@ const MultiStepForm = () => {
                   <option value="Other">Other</option>
                 </select>
               </div>
-          
+
               <div>
-                <label className="block mb-2 font-medium">State / Province *</label>
+                <label className="block mb-2 font-medium">
+                  State / Province *
+                </label>
                 <select
                   name="state"
                   value={formData.state}
@@ -237,12 +308,14 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border border-gray-300 rounded-full"
                 >
                   <option value="">Select State</option>
-                  {usaStates.map(s => (
-                    <option key={s} value={s}>{s}</option>
+                  {usaStates.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
                   ))}
                 </select>
               </div>
-          
+
               <div className="md:col-span-2 mt-6">
                 <button
                   onClick={handleNext}
@@ -258,7 +331,6 @@ const MultiStepForm = () => {
           {/* STEP 2 */}
           {currentStep === 2 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Bank Name
@@ -270,12 +342,12 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 >
                   <option value="">Select Bank</option>
-                  {majorBanks.map(b => (
+                  {majorBanks.map((b) => (
                     <option key={b}>{b}</option>
                   ))}
                 </select>
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Company Name
@@ -288,7 +360,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Payroll Frequency
@@ -305,7 +377,7 @@ const MultiStepForm = () => {
                   <option value="monthly">Monthly</option>
                 </select>
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Deposit Date
@@ -318,7 +390,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Deposit Amount
@@ -331,7 +403,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Ending Balance
@@ -344,7 +416,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 />
               </div>
-          
+
               <div className="md:col-span-2 grid grid-cols-2 gap-4">
                 <button
                   onClick={handlePrevious}
@@ -366,7 +438,6 @@ const MultiStepForm = () => {
           {/* STEP 3 */}
           {currentStep === 3 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Account Number (Optional)
@@ -379,7 +450,7 @@ const MultiStepForm = () => {
                   className="w-full px-5 py-3 bg-gray-100 border rounded-full"
                 />
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Statement Duration & Type
@@ -393,21 +464,37 @@ const MultiStepForm = () => {
                   <option value="" disabled>
                     Select an option
                   </option>
-          
+
                   {/* Personal */}
-                  <option value="1-month-personal">1 Month (Personal) $89.99</option>
-                  <option value="2-month-personal">2 Month (Personal) $174.99</option>
-                  <option value="3-month-personal">3 Month (Personal) $264.99</option>
-                  <option value="6-month-personal">6 Month (Personal) $549.99</option>
-          
+                  <option value="1-month-personal">
+                    1 Month (Personal) $89.99
+                  </option>
+                  <option value="2-month-personal">
+                    2 Month (Personal) $174.99
+                  </option>
+                  <option value="3-month-personal">
+                    3 Month (Personal) $264.99
+                  </option>
+                  <option value="6-month-personal">
+                    6 Month (Personal) $549.99
+                  </option>
+
                   {/* Business */}
-                  <option value="1-month-business">1 Month (Business) $100</option>
-                  <option value="2-month-business">2 Month (Business) $214.99</option>
-                  <option value="3-month-business">3 Month (Business) $324.99</option>
-                  <option value="6-month-business">6 Month (Business) $654.99</option>
+                  <option value="1-month-business">
+                    1 Month (Business) $100
+                  </option>
+                  <option value="2-month-business">
+                    2 Month (Business) $214.99
+                  </option>
+                  <option value="3-month-business">
+                    3 Month (Business) $324.99
+                  </option>
+                  <option value="6-month-business">
+                    6 Month (Business) $654.99
+                  </option>
                 </select>
               </div>
-          
+
               <div>
                 <label className="block mb-1 text-sm font-medium text-gray-700">
                   Payment Method
@@ -424,7 +511,7 @@ const MultiStepForm = () => {
                   <option value="zelle">Zelle</option>
                 </select>
               </div>
-          
+
               <div className="md:col-span-2 grid grid-cols-2 gap-4">
                 <button
                   onClick={handlePrevious}
@@ -437,12 +524,11 @@ const MultiStepForm = () => {
                   disabled={!isStep3Valid() || isSubmitting}
                   className="py-4 bg-blue-900 text-white rounded-full disabled:bg-gray-400"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </div>
           )}
-
         </div>
       </div>
     </div>
